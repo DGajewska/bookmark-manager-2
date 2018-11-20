@@ -19,16 +19,17 @@ class BookMark
       @con = PG.connect :dbname => database
       results = @con.exec "SELECT * FROM bookmarks"
 
-    @list = results.map {|row| row['url']}
+    @list = results.map {|row| {:url => row['url'],
+                                :title => row['title']}}
 
   end
 
   def print
-    @list.join(", ")
+    @list
   end
 
-  def add(url)
-    @con.exec "INSERT INTO bookmarks(url) VALUES('#{url}')"
+  def add(url,title)
+    @con.exec "INSERT INTO bookmarks(url,title) VALUES('#{url}','#{title}')"
   end
 
 end

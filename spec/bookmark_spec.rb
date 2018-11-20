@@ -9,7 +9,7 @@ describe BookMark do
 
   it "list's the bookmarks with the format integer boomark ie.
   1. website" do
-    expect(bookmark.print).to include("http://www.google.com")
+    expect(bookmark.print).to include({:title=>'Google', :url=>"http://www.google.com"})
   end
 
 end

@@ -1,2 +1,7 @@
 <h1>Your list of bookmarks</h1>
-<body> <%=  @bookmarks %></body>
+<body>
+<% for @item in @bookmarks %>
+<a href=<%= @item[:url] %>><%= @item[:title] %></a><br>
+
+<%end%>
+</body>
