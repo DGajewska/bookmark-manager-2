@@ -1,13 +1,17 @@
+require 'pg'
+
 class BookMark
 
   attr_reader :list
   attr_reader :print
 
-  DEFAULT_LIST = [
-            "http://www.makersacademy.com", "http://www.destroyallsoftware.com", "http://www.google.com"]
+  def initialize
+      ENV['RACK_ENV'] == 'test' ? database = 'bookmark_manager_test' : database = 'bookmark_manager'
+      con = PG.connect :dbname => database
+      results = con.exec "SELECT * FROM bookmarks"
 
-  def initialize(list = DEFAULT_LIST)
-    @list = list
+    @list = results.map {|row| row['url']}
+
   end
 
   def print
