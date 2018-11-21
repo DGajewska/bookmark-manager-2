@@ -1,7 +1,10 @@
 <h1>Your list of bookmarks</h1>
 <body>
 <% for @item in @bookmarks %>
-<a href=<%= @item[:url] %>><%= @item[:title] %></a><br>
-
+  <a href=<%= @item[:url] %>><%= @item[:title] %></a><br>
+  <form method='post' action="delete-bookmark" >
+     <input type="hidden" value=<%= @item[:id] %> name="id" >
+     <input class="button" type="submit" value="Delete">
+  </form>
 <%end%>
 </body>

@@ -27,4 +27,10 @@ feature 'A list of bookmarks exists' do
     click_button "Add"
     expect(page).to have_link('Codewars', href: 'http://codewars.com')
   end
+
+  scenario 'you can delete a bookmark' do
+    visit '/bookmarks'
+    find(".button", match: :first).click
+    expect(page).not_to have_content("Makers")
+  end
 end

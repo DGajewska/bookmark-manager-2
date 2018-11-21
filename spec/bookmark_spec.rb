@@ -9,7 +9,10 @@ describe BookMark do
 
   it "list's the bookmarks with the format integer boomark ie.
   1. website" do
-    expect(bookmark.print).to include({:title=>'Google', :url=>"http://www.google.com"})
+    expect(bookmark.print.first[:title]).to match('Makers Academy')
   end
 
+  it "can delete a bookmark" do
+    expect(bookmark).to respond_to(:delete)
+  end
 end
